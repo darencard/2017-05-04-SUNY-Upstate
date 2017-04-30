@@ -377,7 +377,7 @@ After trimming, we would generally want to run FastQC on our trimmed fastq files
 ## Automating the QC workflow
 Now that we know how to use the tools to perform the QC, let's automate the process using a shell script. We will use the same commands, with a few extra "echo" statements to give us feedback.
 
-Create a script called `qc.sh`:
+Create a script called `qc.sh` in the `~/dc_workshop/docs` directory:
 
 ```bash
 $ nano qc.sh
@@ -391,7 +391,7 @@ cd ~/dc_workshop/data/untrimmed_fastq/
 
 # Run FastQC on the untrimmed files
 echo "Running fastqc on untrimmed fastq files..."
-~/FastQC/fastqc *.fastq
+~/FastQC/fastqc *.fastq.gz
 mkdir -p ~/dc_workshop/results/fastqc_untrimmed_reads
 
 # Move FastQC results
@@ -416,14 +416,15 @@ cat */summary.txt > ~/dc_workshop/docs/fastqc_summaries.txt
 # Run Trimmomatic
 echo "Running Trimmomatic..."
 cd ~/dc_workshop/data/untrimmed_fastq/
-for sample in 1.fastq.gz; do
+for sample in *1.fastq.gz; do
  # Run Trimmomatic command
 	java -jar ~/Trimmomatic-0.32/trimmomatic-0.32.jar PE -threads 2 \
-	-basein ${sample} ${sample} SLIDINGWINDOW:4:20 MINLEN:20;
+	-basein ${sample} -baseout ${sample} SLIDINGWINDOW:4:20 MINLEN:20;
 done
 
 # Move trimmed files to the trimmed fastq folder
-mv *trim.fastq ../trimmed_fastq/
+mkdir -p ~/dc_workshop/data/trimmed_fastq
+mv *[12]?.fastq.gz ../trimmed_fastq/
 
 # Run FastQC on all trimmed files
 ~/FastQC/fastqc ../trimmed_fastq/*.fastq.gz
