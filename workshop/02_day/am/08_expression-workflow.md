@@ -60,7 +60,7 @@ $ mkdir results/sam results/bam
 
 We have already trimmed our reads so now the next step is alignment of our quality reads to the reference genome.
 
-![workflow_align](../img/variant_calling_workflow_align.png)
+![workflow_align](../img/expression_workflow_align.png)
 
 We perform read alignment or mapping to determine where in the genome our reads originated from. There are a number of tools to choose from and while there is no gold standard there are some tools that are better suited for particular NGS analyses. We will be using the [Burrows Wheeler Aligner (BWA)](http://bio-bwa.sourceforge.net/), which is a software package for mapping low-divergent sequences against a large reference genome. The alignment process consists of two steps:
 
@@ -115,7 +115,7 @@ The file begins with a **header**, which is optional. The header is used to desc
 
 ## Alignment cleanup
 
-![workflow_clean](../img/variant_calling_workflow_cleanup.png)
+![workflow_clean](../img/expression_workflow_cleanup.png)
 
 Post-alignment processing of the alignment file includes:
 
