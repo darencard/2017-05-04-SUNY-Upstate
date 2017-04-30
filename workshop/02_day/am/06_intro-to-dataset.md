@@ -2,7 +2,7 @@
 layout: lesson
 root: .
 title: Introduction to workshop dataset
-minutes: 45
+minutes: 30
 ---
 
 ## Learning Objectives
@@ -16,7 +16,7 @@ minutes: 45
 
 #### Description of dataset
 
-RNAseq has emerged as an important technology for understanding how gene expression modulates organism phenotypes. The most common form of RNAseq targets mature mRNAs and therefore provides information about gene expression that usually underlies protein formation (though not all mRNAs become proteins). There are other forms of RNAseq that focus on other RNA molecular, like small RNA sequencing, but we will focus on mRNAseq.
+RNAseq has emerged as an important technology for understanding how gene expression modulates organism phenotypes. The most common form of RNAseq targets mature mRNAs and therefore provides information about gene expression that usually underlies protein formation (though not all mRNAs become proteins). There are other forms of RNAseq that focus on other RNA molecules, like small RNA sequencing, but we will focus on mRNAseq.
 
 Despite having the same underlying genome, cells in a single organisms body can vary radically in their phenotypes, and thus their functions in a multicellular organism. In humans, for instance, there are very different types of cells in our distinct tissues and organs, and even within organs there are different cell types that perform unique functions. Differential regulation of mRNA is the primary mediator explaining how the same genome can create very different phenotypes. Therefore, if one profiles the expression of different organs, he or she would expect to see very different levels of gene expression across genes. This is the basis for this workshop, where we will be using mRNAseq data from 9 human samples, comprising 4 tissues, to understand the general expression patterns that vary between tissues and the specific genes that are most different in expression between tissues.
 
@@ -41,7 +41,7 @@ We want to be able to quantify gene expression across these samples and determin
 #### Accessing the original archived data
 The sequencing dataset was attained from the [NCBI Sequence Read Archive](http://www.ncbi.nlm.nih.gov/sra), which is a large (>3 quadrillion basepairs as of 2014) repository for next-generation sequence data. Like many NCBI databases, it is complex and mastering its use is greater than the scope of this lesson. Very often, as in this study, there will be a direct link (perhaps in the supplemental information) to where on the SRA the dataset can be found. The link from the paper is: [http://www.ncbi.nlm.nih.gov/sra?term=SRP058740](http://www.ncbi.nlm.nih.gov/sra?term=SRP058740)
 
-###### A. Locate the Run Accessory Table for the Lenski Dataset on the SRA
+###### A. Locate the Run Accessory Table for the Dataset on the SRA
 
 1. Access the dataset from the provided link: [http://www.ncbi.nlm.nih.gov/sra?term=SRP058740](http://www.ncbi.nlm.nih.gov/sra?term=SRP058740).  
 You will be presented with a page for the overall SRA accession SRP058740 - this is a collection of all the experimental data
@@ -85,6 +85,5 @@ After answering the questions, you should avoid saving this file; we don't want 
 
 Ruiz-Orera, J., Hernandez-Rodriguez, J., Chiva, C., Sabido, E., Kondova, I., Bontrop, R., Marques-Bonet, T., Alba, M.M. Origins of de novo genes in human and chimpanzee (2015) PLOS Genetics, 11 (12), e1005721.
 [Paper](http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1005721)
+
 Data on NCBI SRA: [http://www.ncbi.nlm.nih.gov/sra?term=SRP058740](http://www.ncbi.nlm.nih.gov/sra?term=SRP058740)
-
-
