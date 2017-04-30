@@ -20,16 +20,16 @@ Approximate time: 120 minutes
 
 When working with NGS data, the raw reads you get off of the sequencer will need to pass through a number of  different tools in order to generate your final desired output. The execution of this set of tools in a specified order is commonly referred to as a *workflow* or a *pipeline*. 
 
-An example of the workflow we will be using for our variant calling analysis is provided below with a brief description of each step. 
+An example of the workflow we will be using for our genes expression analysis is provided below with a brief description of each step. 
 
-![workflow](../img/variant_calling_workflow.png)
+![workflow](../img/expression_workflow.png)
 
 
 1. Quality control - Assessing quality using FastQC
 2. Quality control - Trimming and/or filtering reads (if necessary)
 3. Align reads to reference genome 
 4. Perform post-alignment clean-up
-5. Variant calling
+5. Infer expression
 
 These workflows in bioinformatics adopt a plug-and-play approach in that the output of one tool can be easily used as input to another tool without any extensive configuration. Having standards for data formats is what makes this feasible. Standards ensure that data is stored in a way that is generally accepted and agreed upon within the community. The tools that are used to analyze data at different stages of the workflow are therefore built under the assumption that the data will be provided in a specific format.  
 
@@ -38,7 +38,7 @@ These workflows in bioinformatics adopt a plug-and-play approach in that the out
 
 The first step in the variant calling work flow is to take the FASTQ files received from the sequencing facility and assess the quality of the sequence reads. 
 
-![workflow_qc](../img/var_calling_workflow_qc.png)
+![workflow_qc](../img/expression_workflow_qc.png)
 
 ### FASTQ format
 
@@ -130,7 +130,7 @@ $ mkdir data docs results
 
 Move our sample data to our working (home) directory
 ```bash
-$ mv ~/.dc_sampledata_lite/untrimmed_fastq/ ~/dc_workshop/data/
+$ mv ~/data ~/dc_workshop/data/
 ```
 
 #### Run FastQC
@@ -147,7 +147,7 @@ To run the fastqc program, we call it from its location in `~/FastQC`.  *FastQC*
 2. Run FastQC on **two fastq files** in the directory:
 
 ```bash
-$ ~/FastQC/fastqc SRR097977.fastq SRR098027.fastq
+$ ~/FastQC/fastqc SRR2040575_brain_1.fastq.gz SRR2040577_heart_1.fastq.gz
 ```
 
 Take a quick look at what files were generated:
@@ -201,7 +201,7 @@ Within the 'Site Manager' window, do the following:
 
 ######Filezilla - Step 3
 
-In FileZilla, on the left side of the screen navigate to the location you would like to save the file, and on the right side of the screen navigate through your remote directory to the file `/home/dcuser/dc_workshop/results/fastqc_untrimmed_reads/SRR097977_fastqc.html`. Double click on the .html file to transfer a copy, or click and drag over to the right hand panel.
+In FileZilla, on the left side of the screen navigate to the location you would like to save the file, and on the right side of the screen navigate through your remote directory to the file `/home/dcuser/dc_workshop/results/fastqc_untrimmed_reads/SRR2040575_brain_1_fastqc.html`. Double click on the .html file to transfer a copy, or click and drag over to the right hand panel.
 
 Open the .html file to view the report.
 
@@ -219,7 +219,7 @@ The **"Per base sequence quality"** plot provides the distribution of quality sc
 
 ![FastQC_seq_qual](../img/FastQC_seq_qual.png)
 
-The **"Overrepresented sequences"** table displays the sequences (at least 20 bp) that occur in more than 0.1% of the total number of sequences. This table aids in identifying contamination, such as vector or adapter sequences. SRR09797 did not return any overrepresented sequences.
+The **"Overrepresented sequences"** table displays the sequences (at least 20 bp) that occur in more than 0.1% of the total number of sequences. This table aids in identifying contamination, such as vector or adapter sequences. SRR2040575_brain did not return any overrepresented sequences.
 
 
 ##### .zip files   
@@ -276,17 +276,17 @@ Once we have an idea of the quality of our raw data, it is time to trim away ada
 Because *Trimmomatic* is java based, it is run using the `java -jar path/to/trimmomatic-0.32.jar` command:
 
 ```bash
-$ java -jar path/to/trimmomatic-0.33.jar SE \
+$ java -jar path/to/trimmomatic-0.32.jar PE \
 -threads 2 \
-inputfile \
-outputfile \
+-basein inputfile \
+-baseout base \
 OPTION:VALUE... # DO NOT RUN THIS
 ```    
 `java -jar` calls the Java program, which is needed to run *Trimmomatic*, which is a 'jar' file (`trimmomatic-0.33.jar`). A 'jar' file is a special kind of java archive that is often used for programs written in the Java programming language.  If you see a new program that ends in '.jar', you will know it is a java program that is executed `java -jar` <*location of program .jar file*>.  
 
-The `SE` argument is a keyword that specifies we are working with single-end reads. We have to specify the `-threads` parameter because *Trimmomatic* uses 16 threads by default.
+The `PE` argument is a keyword that specifies we are working with paired-end reads. We have to specify the `-threads` parameter because *Trimmomatic* uses 16 threads by default.
 
-The next two arguments are input file and output file names.  These are then followed by a series of options that tell the program exactly how you want it to operate. *Trimmomatic* has a variety of options and parameters:
+The next two arguments are input file for the forward read, which *Trimmomatic* uses to find both paired reads, and output file base, which *Trimmomatic* can use to name the output files.  These are then followed by a series of options that tell the program exactly how you want it to operate. *Trimmomatic* has a variety of options and parameters:
 
 * **_-threads_** How many processors do you want *Trimmomatic* to run with?
 * **_SE_** or **_PE_** Single End or Paired End reads?
@@ -310,33 +310,35 @@ $ cd ~/dc_workshop/data/untrimmed_fastq
 ```
 Since the *Trimmomatic* command is complicated and we will be running it a number of times, let's draft the command in a **text editor**, such as Sublime, TextWrangler or Notepad++. When finished, we will copy and paste the command into the terminal.
 
-For the single fastq file `SRR097977.fastq`, the command is:
+For a set of paired fastq files `SRR2040575_brain_1.fastq.gz` and `SRR2040575_brain_2.fastq.gz`, the command is:
 
 ```bash
-$ java -jar ~/Trimmomatic-0.32/trimmomatic-0.32.jar SE \
+$ java -jar ~/Trimmomatic-0.32/trimmomatic-0.32.jar PE \
 -threads 2 \
-SRR097977.fastq \
-SRR097977.fastq_trim.fastq \
+-basein SRR2040575_brain_1.fastq.gz \
+-baseout SRR2040575_brain_1.fastq.gz \
 SLIDINGWINDOW:4:20 \
 MINLEN:20
 ```
 *The backslashes at the end of the lines allow us to continue our script on new lines, which helps with readability of some long commands.*
 
-This command tells *Trimmomatic* to run on a fastq file containing Single-End reads (``SRR097977.fastq``, in this case) and to name the output file ``SRR097977.fastq_trim.fastq``. The program will remove nucleotides using a sliding window of size 4 that will remove those bases if their average quality score is below 20. The entire read will be discarded if the length of the read after trimming drops below 20 nucleotides.
+This command tells *Trimmomatic* to run on a set of fastq files containing Paired-End reads (``SRR2040575_brain_1.fastq.gz`` and ``SRR2040575_brain_2.fastq.gz``, in this case), and using the `-basein` setting allows *Trimmomatic* to automatically determine the matching Paired-End reads. Four output files will be produced, one each for the trimmed Paired-End reads and one each for the "broken pairs", reads where one pair was completely filtered. By specifying `-baseout` we are allowing *Trimmomatic* to automatically name the output files using the name we provide as a guide, using the suffixes 1P and 2P for paired files and 1U and 2U for unpaired files. The program will remove nucleotides using a sliding window of size 4 that will remove those bases if their average quality score is below 20. The entire read will be discarded if the length of the read after trimming drops below 20 nucleotides.
 
 ```bash
-TrimmomaticSE: Started with arguments: SRR097977.fastq SRR097977.fastq_trim.fastq SLIDINGWINDOW:4:20 MINLEN:20
-Automatically using 2 threads
+TrimmomaticPE: Started with arguments: -threads 2 -basein SRR2040575_brain_1.fastq.gz -baseout SRR2040575_brain_1.fastq.gz SLIDINGWINDOW:4:20 MINLEN:20
+Using templated Input files: SRR2040575_brain_1.fastq.gz SRR2040575_brain_2.fastq.gz
+Using templated Output files: SRR2040575_brain_1_1P.fastq.gz SRR2040575_brain_1_1U.fastq.gz SRR2040575_brain_1_2P.fastq.gz SRR2040575_brain_1_2U.fastq.gz
 Quality encoding detected as phred33
-Input Reads: 4346025 Surviving: 4060625 (93.43%) Dropped: 285400 (6.57%)
-TrimmomaticSE: Completed successfully
+Input Read Pairs: 773723 Both Surviving: 772059 (99.78%) Forward Only Surviving: 875 (0.11%) Reverse Only Surviving: 764 (0.10%) Dropped: 25 (0.00%)
+TrimmomaticPE: Completed successfully
 ```
 
-So that worked and we have a new fastq file.
+So that worked and we have a new fastq files.
 
 ```bash
-$ ls SRR097977*
-SRR097977.fastq  SRR097977.fastq_trim.fastq
+$ ls SRR2040575_brain*
+SRR2040575_brain_1_1P.fastq.gz	SRR2040575_brain_1_2P.fastq.gz	SRR2040575_brain_1.fastq.gz
+SRR2040575_brain_1_1U.fastq.gz	SRR2040575_brain_1_2U.fastq.gz	SRR2040575_brain_2.fastq.gz
 ```
 
 Now we know how to run *Trimmomatic* but there is some good news and bad news.  
@@ -344,21 +346,20 @@ One should always ask for the bad news first.  Trimmomatic only operates on
 one input file at a time and we have more than one input file.  The good news?
 We already know how to use a `for` loop to deal with this situation.
 
-Before we run our `for` loop, let's remove the file that we just created:
+Before we run our `for` loop, let's remove the files that we just created:
 
 ```bash
 $ rm *trim.fastq
 ```
 
 ```bash
-$ for infile in SRR097977.fastq SRR098027.fastq
+$ for sample in SRR2040575_brain_1.fastq.gz SRR2040577_heart_1.fastq.gz
   do
-    outfile=${infile}_trim.fastq
-    java -jar ~/Trimmomatic-0.32/trimmomatic-0.32.jar SE -threads 2 $infile $outfile SLIDINGWINDOW:4:20 MINLEN:20
+    java -jar ~/Trimmomatic-0.32/trimmomatic-0.32.jar PE -threads 2 -basein $sample -baseout $sample SLIDINGWINDOW:4:20 MINLEN:20
   done
 ```
 
-In the 'for loop', do you remember how a variable is assigned the value of each item in the list in turn?  We can call it whatever we like.  This time it is called 'infile'.  Note that the third line of this for loop is creating a second variable called 'outfile'.  We assign it the value of $infile with '_trim.fastq' appended to it.  The variable is wrapped in curly brackets '{}' so the shell knows that whatever follows is not part of the variable name $infile.  There are no spaces before or after the '='.
+In the 'for loop', do you remember how a variable is assigned the value of each item in the list in turn?  We can call it whatever we like.  This time it is called 'sample'. The variable is wrapped in curly brackets '{}' so the shell knows that whatever follows is not part of the variable name $sample.  There are no spaces before or after the '='.
 
 Now let's keep our directory organized. Make a directory for the trimmed fastq files: 
 
@@ -369,7 +370,7 @@ $ mkdir ../trimmed_fastq
 Move the trimmed fastq files to the new directory:
 
 ```bash
-$ mv *trim.fastq ../trimmed_fastq/
+$ mv *[12]?.fastq.gz ../trimmed_fastq/
 ```
 After trimming, we would generally want to run FastQC on our trimmed fastq files, then transfer the files to our machine to make sure the trimming improved the quality of our reads without removing too many of them. 
 
@@ -415,18 +416,16 @@ cat */summary.txt > ~/dc_workshop/docs/fastqc_summaries.txt
 # Run Trimmomatic
 echo "Running Trimmomatic..."
 cd ~/dc_workshop/data/untrimmed_fastq/
-for infile in *.fastq; do
-  # Create names for the output trimmed files
-	outfile=${infile}_trim.fastq;
+for sample in 1.fastq.gz; do
  # Run Trimmomatic command
-	java -jar ~/Trimmomatic-0.32/trimmomatic-0.32.jar SE -threads 2 \
-	$infile $outfile SLIDINGWINDOW:4:20 MINLEN:20;
+	java -jar ~/Trimmomatic-0.32/trimmomatic-0.32.jar PE -threads 2 \
+	-basein ${sample} ${sample} SLIDINGWINDOW:4:20 MINLEN:20;
 done
 
 # Move trimmed files to the trimmed fastq folder
 mv *trim.fastq ../trimmed_fastq/
 
 # Run FastQC on all trimmed files
-~/FastQC/fastqc ../trimmed_fastq/*.fastq
+~/FastQC/fastqc ../trimmed_fastq/*.fastq.gz
 ```
 ----
