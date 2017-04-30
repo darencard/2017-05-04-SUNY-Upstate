@@ -45,7 +45,7 @@ The sequencing dataset was attained from the [NCBI Sequence Read Archive](http:/
 
 1. Access the dataset from the provided link: [http://www.ncbi.nlm.nih.gov/sra?term=SRP058740](http://www.ncbi.nlm.nih.gov/sra?term=SRP058740).  
 You will be presented with a page for the overall SRA accession SRP058740 - this is a collection of all the experimental data
-2. This dataset includes expression from humans, which we will be using, and other primates. At the top right you will see the `Results by taxon`, where you can click on `Homo sapiens` to pare down the dataset to only the human data of interest.
+2. This dataset includes expression from humans, which we will be using, and other mammals. At the top right you will see the `Results by taxon`, where you can click on `Homo sapiens` to pare down the dataset to only the human data of interest.
 3. Click on the first entry ([GSM1695913](https://www.ncbi.nlm.nih.gov/sra/SRX1038913[accn])); this will take you to a page for an SRX (Sequence Read eXperiment). Take a few minutes to examine some of the descriptions on the page
 4. Click on the ['All runs'](https://www.ncbi.nlm.nih.gov/Traces/study/?acc=SRP058740) link under where it says **Study**; this is a description of all of the NGS datasets related to the experiment.
 5. Go to the top of the page and in the **Total** row you will see there are 27 runs, 234.83 Gb data, and 376.77 Gbases of data. Click the 'RunInfo Table' button.
