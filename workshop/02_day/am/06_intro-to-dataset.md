@@ -56,8 +56,15 @@ You should now have a file called **SraRunTable.txt**
 
 ###### B. Review the SraRunTable in a spreadsheet program
 
-
 1. Using your choice of spreadsheet program open the **SraRunTable.txt** file. If prompted this is a tab-delimited file.
+
+###### C. Download and prepare the dataset
+
+1. We've prepared this dataset for you and you should download it to be prepared for the rest of the workshop. The dataset has been archived at [figshare](). Just visit the figshare page for this dataset at [https://figshare.com/s/ec43b22e2054b2557498](https://figshare.com/s/ec43b22e2054b2557498) and click `Download`.
+2. The dataset is large so it may take some time to download The dataset is stored as a `.zip` archive, so be sure that your computer does not automatically unzip it. Once it is downloaded, you should transfer it to your remote cloud computer and place it in a newly created directory in $HOME called `data_analysis`. Once the `.zip` file is there, you can unzip it using `unzip`. Use `man unzip` to determine how to do this.
+3. Once unzipped, you will see the file `GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.fasta.gz`, which is the reference transcriptome we will be using. There are also directories named `raw`, which contains the raw sequencing data we will be starting with, and `backup`, which includes several pre-prepared files for various stages of our analysis pipeline. The data within `backup` should be ignored and is only provided for reference and to help keep learners on track if problems arise.
+
+Note: The downloaded dataset is not the full dataset you explored on the SRA and we've taken steps to reduce the data file size (considerably) so that you can efficiently analyze these data during the workshop.
 
 ***
 **Exercises**
