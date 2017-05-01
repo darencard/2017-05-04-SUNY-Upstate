@@ -20,8 +20,6 @@ source("setup.R")
 > * Do simple arithmetic operations in R using values and objects.
 > * Call functions and use arguments to change their default options.
 > * Inspect the content of vectors and manipulate their content.
-> * Subset and extract values from vectors.
-> * Correctly define and handle missing values in vectors.
 
 ------------
 
