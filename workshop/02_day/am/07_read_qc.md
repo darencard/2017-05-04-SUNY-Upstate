@@ -349,7 +349,7 @@ We already know how to use a `for` loop to deal with this situation.
 Before we run our `for` loop, let's remove the files that we just created:
 
 ```bash
-$ rm *trim.fastq
+$ rm *[12][PU].fastq.gz
 ```
 
 ```bash
