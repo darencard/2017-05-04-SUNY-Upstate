@@ -4,11 +4,6 @@ author: Data Carpentry contributors
 minutes: 15
 ---
 
-
-```{r, echo=FALSE, purl=FALSE}
-knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
-```
-
 ------------
 
 > ### Learning Objectives
@@ -124,7 +119,7 @@ generate. RStudio can also be used for other things (e.g., version control,
 developing packages, writing Shiny apps) that we will not cover during the
 workshop.
 
-![RStudio interface screenshot](img/rstudio-screenshot.png)
+![RStudio interface screenshot](../img/rstudio-screenshot.png)
 
 RStudio is divided into 4 "Panes": the **Source** for your scripts and documents
 (top-left, in the default layout), the R **Console** (bottom-left), your
@@ -167,7 +162,7 @@ tutorial.
 
 Your working directory should now look like this:
 
-![How it should look like at the beginning of this lesson](img/r-starting-how-it-should-look-like.png)
+![How it should look like at the beginning of this lesson](../img/r-starting-how-it-should-look-like.png)
 
 ### Organizing your working directory
 
@@ -198,7 +193,7 @@ workshop, we will need a `data/` folder to store our raw data, and we will
 create later a `data_output/` folder when we learn how to export data as CSV
 files.
 
-![Example of a working directory structure](img/working-directory-structure.png)
+![Example of a working directory structure](../img/working-directory-structure.png)
 
 
 ## Interacting with R
@@ -257,7 +252,7 @@ command and return you to the `>` prompt.
 
 ### Use the built-in RStudio help interface to search for more information on R functions
 
-![RStudio help interface](img/rstudiohelp.png)
+![RStudio help interface](../img/rstudiohelp.png)
 
 One of the most fastest ways to get help, is to use the RStudio help interface. This panel by default can be found at the lower right hand panel of RStudio. As seen in the screenshot, by typing the word "Mean", RStudio tries to also give a number of suggestions that you might be interested in. The description is then shown in the display window.
 
