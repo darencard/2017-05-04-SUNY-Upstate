@@ -52,7 +52,7 @@ dc_workshop
 
 You will also need to create directories for the results that will be generated as part of the workflow: 
 ```bash
-$ mkdir results/sam results/bam
+$ mkdir results/sam results/bam results/counts
 ```
 
 > *NOTE: All of the tools that we will be using in this workflow have been pre-installed on our remote computer*
@@ -164,11 +164,11 @@ $ cat results/bam/SRR2040575_brain.aligned.sorted.stats.txt
 
 ### Calculate the mapping depth for each reference sequence
 
-RNAseq essentially randomly sequences mRNAseq data within a tissue. Therefore, gene expression is essentially a count of the number of sequencing reads that map to a given reference sequence. We can easily calculate this.
+RNAseq essentially randomly sequences mRNAseq data within a tissue. Therefore, gene expression is essentially a count of the number of sequencing reads that map to a given reference sequence. We can easily calculate this, and let's put it in our `results` directory.
 
 ```bash
-$ samtools idxstats results/bam/SRR2040575_brain.aligned.sorted.bam > results/bam/SRR2040575_brain.aligned.sorted.counts.txt
-$ head results/bam/SRR2040575_brain.aligned.sorted.counts.txt
+$ samtools idxstats results/bam/SRR2040575_brain.aligned.sorted.bam > results/counts/SRR2040575_brain.aligned.sorted.counts.txt
+$ head results/counts/SRR2040575_brain.aligned.sorted.counts.txt
 NM_001005484.1_OR4F5	918	0	0
 NM_001005221.2_OR4F29	939	0	0
 NM_001005277.1_OR4F16	939	0	0
@@ -238,7 +238,7 @@ samtools index results/bam/SRR2040575_brain.aligned.sorted.bam
 samtools flagstat results/bam/SRR2040575_brain.aligned.sorted.bam > results/bam/SRR2040575_brain.aligned.sorted.stats.txt
 
 # generating count data
-samtools idxstats results/bam/SRR2040575_brain.aligned.sorted.bam > results/bam/SRR2040575_brain.aligned.sorted.counts.txt
+samtools idxstats results/bam/SRR2040575_brain.aligned.sorted.bam > results/counts/SRR2040575_brain.aligned.sorted.counts.txt
 ```
 
 ### Positional parameters (input files)
@@ -294,7 +294,7 @@ map="bwa mem $ref \
     samtools sort - results/bam/${base}.aligned.sorted"
 index="samtools index results/bam/${base}.aligned.sorted.bam"
 stats="samtools flagstat results/bam/${base}.aligned.sorted.bam > results/bam/${base}.aligned.sorted.stats.txt"
-counts="samtools idxstats results/bam/${base}.aligned.sorted.bam > results/bam/${base}.aligned.sorted.counts.txt"
+counts="samtools idxstats results/bam/${base}.aligned.sorted.bam > results/counts/${base}.aligned.sorted.counts.txt"
 ```
 
 We can finish this script using the material above and calling the commands we've created. It is always good to also put documentation on our script at the top. Save this script in `docs` as `expression_pipeline.sh`.
@@ -329,7 +329,7 @@ map="bwa mem $ref \
     samtools sort - results/bam/${base}.aligned.sorted"
 index="samtools index results/bam/${base}.aligned.sorted.bam"
 stats="samtools flagstat results/bam/${base}.aligned.sorted.bam > results/bam/${base}.aligned.sorted.stats.txt"
-counts="samtools idxstats results/bam/${base}.aligned.sorted.bam > results/bam/${base}.aligned.sorted.counts.txt"
+counts="samtools idxstats results/bam/${base}.aligned.sorted.bam > results/counts/${base}.aligned.sorted.counts.txt"
 
 # print the $base of the sample to keep track
 echo $base
