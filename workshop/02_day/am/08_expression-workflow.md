@@ -329,6 +329,7 @@ map="bwa mem $ref \
     samtools sort - results/bam/${base}.aligned.sorted"
 index="samtools index results/bam/${base}.aligned.sorted.bam"
 stats="samtools flagstat results/bam/${base}.aligned.sorted.bam > results/bam/${base}.aligned.sorted.stats.txt"
+cat_stats="cat results/bam/*stats.txt > docs/alignment_stats.txt"
 counts="samtools idxstats results/bam/${base}.aligned.sorted.bam > results/counts/${base}.aligned.sorted.counts.txt"
 
 # print the $base of the sample to keep track
@@ -346,6 +347,8 @@ eval $index
 # calculate BAM stats
 echo $stats
 eval $stats
+echo $cat_stats
+eval $cat_stats
 
 # infer expression counts
 echo $counts
