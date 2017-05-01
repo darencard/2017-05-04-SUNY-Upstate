@@ -5,3 +5,4 @@ test
 test
 test
 test
+ 1000  exit
