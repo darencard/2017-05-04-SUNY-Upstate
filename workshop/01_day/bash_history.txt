@@ -10,3 +10,4 @@ test
  1002  echo "test"
  1003  ls -lh
  1004  du -sh *
+ 1005  df -h
