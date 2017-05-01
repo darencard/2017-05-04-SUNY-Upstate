@@ -24,7 +24,7 @@ Your directory structure should now look like this:
 dc_workshop
 ├── data
     ├── ref_genome
-        └── GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.fasta.gz
+        └── GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz
     ├── untrimmed_fastq
     	├── SRR2040575_brain_1.fastq.gz
 	├── SRR2040575_brain_2.fastq.gz
@@ -73,7 +73,7 @@ Our first step is to index the reference genome for use by BWA. *NOTE: This only
 
 ```bash   
 $ # This step helps with the speed of alignment
-$ bwa index data/reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.fasta.gz     
+$ bwa index data/reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz     
 ```
 
 Eventually we will loop over all of our files to run this workflow on all of our samples, but for now we're going to work with the quality filtered paired sequences only for just one sample in our dataset `SRR2040575_brain_1_1P.fastq.gz` and `SRR2040575_brain_1_2P.fastq.gz`:
@@ -89,7 +89,7 @@ The alignment process consists of choosing an appropriate reference genome to ma
 Have a look at the [bwa options page](http://bio-bwa.sourceforge.net/bwa.shtml). While we are running bwa with the default parameters here, your use case might require a change of parameters. *NOTE: Always read the manual page for any tool before using and try to understand the options.*
 
 ```bash
-$ bwa mem data/reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.fasta.gz \
+$ bwa mem data/reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz \
     data/trimmed_fastq/SRR2040575_brain_1_1P.fastq.gz data/trimmed_fastq/SRR2040575_brain_1_2P.fastq.gz \
     > results/sam/SRR2040575_brain.aligned.sam
 ```
@@ -196,7 +196,7 @@ $ rm -r results/sam
 Now we can run out single mapping command by stringing the commands from above together with some special syntax.
 
 ```bash
-$ bwa mem data/reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.fasta.gz \
+$ bwa mem data/reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz \
     data/trimmed_fastq/SRR2040575_brain_1_1P.fastq.gz data/trimmed_fastq/SRR2040575_brain_1_2P.fastq.gz | \
     samtools view -S -b - | \
     samtools sort - results/bam/SRR2040575_brain.aligned.sorted
@@ -226,7 +226,7 @@ for you. Name your script `expression_pipeline.sh`.
 
 ```bash
 # aligning reads to produce sorted BAM file (1 piped command)
-bwa mem data/reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.fasta.gz \
+bwa mem data/reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz \
     data/trimmed_fastq/SRR2040575_brain_1_1P.fastq.gz data/trimmed_fastq/SRR2040575_brain_1_2P.fastq.gz | \
     samtools view -S -b - | \
     samtools sort - results/bam/SRR2040575_brain.aligned.sorted
@@ -361,6 +361,6 @@ Finally, we can run this script in a loop to perform the expression workflow on 
 $ pwd
 
 $ for sample in data/trimmed_fastq/*1_1P.fastq.gz
-do bash docs/expression_pipeline.sh $sample data/reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.fasta.gz
+do bash docs/expression_pipeline.sh $sample data/reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz
 done
 ```
