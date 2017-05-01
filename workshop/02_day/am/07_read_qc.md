@@ -130,7 +130,7 @@ $ mkdir data docs results
 
 Move our sample data to our working (home) directory
 ```bash
-$ mv ~/data ~/dc_workshop/data/
+$ mv ~/data ~/dc_workshop/
 ```
 
 #### Run FastQC
