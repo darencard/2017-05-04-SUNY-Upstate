@@ -364,3 +364,5 @@ $ for sample in data/trimmed_fastq/*1_1P.fastq.gz
 do bash docs/expression_pipeline.sh $sample data/reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz
 done
 ```
+
+You should conclude by copying the resuling `*.counts.txt` files to your personal computer, saving them to a directory called `dc_workshop` on your Desktop.
