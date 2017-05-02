@@ -1,0 +1,95 @@
+# install.packages("tidyverse")
+library(tidyverse)
+
+raw_counts <- read.table("~/Desktop/dc/full_expression_counts.raw.txt", header=TRUE, sep="\t")
+
+tidy_counts <- raw_counts %>% 
+  gather(sample, expression, -transcript, -length) %>%
+  as.data.frame()
+
+tidy_counts %>%
+  ggplot() +
+    geom_point(aes(x=length, y=expression))
+
+tidy_counts %>%
+  ggplot() +
+    geom_point(aes(x=length, y=expression, color=sample))
+
+ggplot(tidy_counts) +
+  geom_boxplot(aes(x=sample, y=expression))
+
+tidy_counts %>%
+  filter(expression < 100) %>%
+  ggplot() +
+    geom_boxplot(aes(x=sample, y=expression))
+
+# source("https://bioconductor.org/biocLite.R")
+# biocLite("DESeq2")
+library(DESeq2)
+
+raw_counts$length <- NULL
+metadata <- read.table("~/Desktop/dc/full_expression_counts.metadata.txt", header=TRUE, sep="\t")
+
+dds <- DESeqDataSetFromMatrix(countData=raw_counts, 
+                              colData=metadata, 
+                              design=~organ, 
+                              tidy=TRUE)
+
+dds <- DESeq(dds)
+
+res <- results(dds, tidy=TRUE)
+
+res %>% 
+  filter(padj < 0.05) %>%
+  summarise(count=n())
+
+norm <- counts(dds, normalized=TRUE)
+
+tidy_norm <- norm %>% 
+  as.data.frame() %>%
+  cbind(transcripts = rownames(norm)) %>%
+  gather(sample, expression, -transcripts)
+
+tidy_norm %>% 
+  filter(expression < 100) %>%
+  ggplot() +
+    geom_boxplot(aes(x=sample, y=expression))
+
+vsdata <- vst(dds)
+
+pca <- plotPCA(vsdata, intgroup="organ")
+pca + theme_bw()
+
+scripts <- arrange(res, padj)$row[1:50]
+
+tidy_norm <- norm %>% 
+  t() %>%
+  scale() %>%
+  t() %>% 
+  as.data.frame() %>%
+  cbind(transcripts = rownames(norm)) %>%
+  filter(transcripts %in% scripts) %>%
+  gather(sample, expression, -transcripts)
+  
+heatmap <- ggplot(tidy_norm) +
+  geom_tile(aes(x=sample, y=transcripts, fill=expression))
+
+heatmap
+
+# install.packages("viridis")
+library(viridis)
+
+heatmap +
+  scale_fill_viridis()
+
+volcano <- ggplot(res, aes(x=log2FoldChange, y=-log10(padj),
+                           text=row)) +
+  geom_point(aes(color=factor(res$padj <= 0.01 & abs(res$log2FoldChange) >= 5))) + 
+  theme_bw()
+
+volcano
+
+# install.packages("plotly")
+library(plotly)
+
+ggplotly(volcano)
