@@ -53,13 +53,59 @@ usually a pretty good indicator that a dataset isn't tidy.
 We're going to use a command from `tidyr` a subset of the `tidyverse` package we just downloaded. We're going to 
 manipulate our dataset using `dplyr` another subset of `tidyverse`, which allows us to chain commands together
 like we did when we used pipes (`|`) in Bash. Instead of a pipe, the syntax is `ddplyr` is `%>%`, and as we would
-expect, our output is used as input (normally the first argument to a function) for the next command.
+expect, our output is used as input (normally the first argument to a function) for the next command. Let's 
+execute the following command to make our dataset tidy.
 
 ```{r, eval=TRUE,  purl=FALSE}
 tidy_counts <- raw_exp %>% 
-  gather(sample, expression, -transcript, -length) %>%
-  as.data.frame()
+  gather(sample, expression, -transcript, -length)
 ```
+
+Since there are a lot of new concepts here, let's break this command down:
+1. We are setting whatever the output of the command is to a variable called `tidy_counts`
+2. We use the `%>%` pipe operator to pass the output of the first command as the input
+   of the second command.
+   a. `raw_exp` just prints the untidy `data.frame`
+   b. `gather` does the tidying. This command looks across the columns in the `data.frame`
+       and gathers them such that the header line describes some variable of an observation
+       and each of the rows is an individual observation. We provide the argument `sample`
+       to name the variables encompassed by the header (i.e., the samples) and `expression` to
+       name the variable corresponding to the expression values. The `-transcript` and `-length`
+       tell `gather` to ignore those two fields from the original dataset and treat them as separate
+       variables describing each observation. If this doesn't make much sense, hopefully the output
+       will make it more obvious.
+       
+```{r, eval=TRUE,  purl=FALSE}
+head(tidy_counts)
+str(tidy_counts)
+```
+
+Notice how we now have only 4 columns. `transcript` and `length` have stayed the same, since we told
+gather to exclude them. `transcript` is the unit of measurement here, and `length` is a variable of the
+transcript length. The newly formated columns are `sample` and `expression`. `sample` now represents the 
+variable reflecting the samples we are analyzing. You'll see that it repeats as the same value for each
+transcript before repeating when a new sample is encountered. Finally, for each combination of variables
+in the other 3 columns, you have the `expression` variable that provides the expression under that exact
+circumstance.
+
+This is *tidy* data and you'll notice that we only have variables as columns and observations as rows.
+As you have probably noticed, tidy data tends to be in a 'long' format, as the data that was 
+side-by-side has essentially been stacked. Great, our data is now tidy!
+
+Let's demo the package `dplyr` some more. You've already seen the pipe operator `%>%` but `dplyr` is
+also designed for manipulating tidy datasets. `dplyr` makes it easy to subset.
+
+```{r, eval=TRUE,  purl=FALSE}
+# extract the first sample and show the head
+tidy_counts %>%
+    subset(sample=="SRR2040575_brain") %>%
+    head()
+```
+
+We can also summarize the data in many ways.
+
+
+
 
 ```{r, eval=TRUE,  purl=FALSE}
 tidy_counts %>%
