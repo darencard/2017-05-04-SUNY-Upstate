@@ -1,8 +1,7 @@
 ---
 layout: page
 title: "The Shell"
-comments: true
-date: 2014-07-30
+date: 2017-05-04
 ---
 
 # Introduction to cloud computing
@@ -98,11 +97,11 @@ Welcome to Ubuntu 14.04.3 LTS (GNU/Linux 3.13.0-48-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com/
 
-  System information as of Sun Jan 24 21:38:35 UTC 2016
+  System information as of Sun Apr 30 22:34:51 UTC 2017
 
-  System load:  0.0                Processes:           151
-  Usage of /:   48.4% of 98.30GB   Users logged in:     0
-  Memory usage: 6%                 IP address for eth0: 172.31.62.209
+  System load:  0.07               Processes:           157
+  Usage of /:   59.4% of 98.30GB   Users logged in:     1
+  Memory usage: 9%                 IP address for eth0: 172.31.62.127
   Swap usage:   0%
 
   Graph this data and manage this system at:
@@ -111,11 +110,14 @@ Welcome to Ubuntu 14.04.3 LTS (GNU/Linux 3.13.0-48-generic x86_64)
   Get cloud support with Ubuntu Advantage Cloud Guest:
     http://www.ubuntu.com/business/services/cloud
 
-12 packages can be updated.
-10 updates are security updates.
+424 packages can be updated.
+267 updates are security updates.
+
+New release '16.04.2 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
 
 
-Last login: Sun Jan 24 21:38:36 2016 from
+Last login: Sun Apr 30 22:34:52 2017 from
 ```
 
 You should also have a blinking cursor awaiting your command

@@ -1,9 +1,7 @@
 ---
 layout: page
-title: "Introduction to the Shell"
-authors: "Sheldon McKay, Paul Wilson, Milad Fatenejad, Sasha Wood and Radhika Khetani"
-comments: true
-date: 2015-07-30
+title: "Searching files"
+date: 2017-05-04
 ---
 
 ## Learning objectives
@@ -38,10 +36,15 @@ $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq
 
 for example:
 
-    @SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-    CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-    +SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-    #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    @SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
+    NNNNNNNNNNNNNNNNCNNNNNNNNNNNNNNNNNN
+    +SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
+    !!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
+    @SRR098026.2 HWUSI-EAS1599_1:2:1:0:312 length=35
+    NNNNNNNNNNNNNNNNANNNNNNNNNNNNNNNNNN
+    +SRR098026.2 HWUSI-EAS1599_1:2:1:0:312 length=35
+    !!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
+
 
 ****
 **Exercise**
@@ -201,7 +204,7 @@ This returns a sorted list (too long to show here) of PAIRED and SINGLE values. 
 count the different categories.
 
 ```bash
-$ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s |	sort | uniq -c
+$ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort | uniq -c
 ```
 
       2 PAIRED
@@ -245,7 +248,7 @@ $ grep PAIRED SraRunTable.txt > SraRunTable_only_paired_end.txt
 
 ## Where can I learn more about the shell?
 
-- Software Carpentry tutorial - [The Unix shell](http://software-carpentry.org/v4/shell/index.html)
+- Software Carpentry tutorial - [The Unix shell](http://v4.software-carpentry.org/shell/index.html)
 - The shell handout - [Command Reference](http://files.fosswire.com/2007/08/fwunixref.pdf)
 - [explainshell.com](http://explainshell.com)
 - http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html

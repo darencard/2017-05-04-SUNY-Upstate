@@ -1,8 +1,7 @@
 ---
 layout: page
 title: "Introduction to the Shell"
-comments: true
-date: 2014-07-30
+date: 2017-05-04
 ---
 
 ## Learning objectives
@@ -30,8 +29,7 @@ $ ls
 
 You will see:
 
-    sra_metadata  untrimmed_fastq
-
+       r_genomics  sra_metadata  untrimmed_fastq  variant_calling.tar.gz
 
 > `ls` stands for 'list' and it lists the contents of a directory.
 
@@ -40,7 +38,8 @@ There are two items listed.  What are they? We can use a command line "modifier"
 ```bash
 $ ls -F
 ```      
-	sra_metadata/  untrimmed_fastq/
+
+       r_genomics/  sra_metadata/  untrimmed_fastq/  variant_calling.tar.gz
 	
 Anything with a "/" after it is a directory. Things with a "*" after them are programs. If there are no decorations after the name, it's a file.
 
@@ -50,8 +49,11 @@ You can also use the command `ls -l` to see whether items in a directory are fil
 $ ls -l
 ```
 
-    drwxr-x--- 2 dcuser dcuser 4096 Jul 30 11:37 sra_metadata
-    drwxr-xr-x 2 dcuser dcuser 4096 Jul 30 11:38 untrimmed_fastq
+    total 62788
+    drwxrwxr-x 4 dcuser dcuser     4096 May 21  2016 r_genomics
+    drwxr-x--- 2 dcuser dcuser     4096 Jul 30  2015 sra_metadata
+    drwxr-xr-x 2 dcuser dcuser     4096 Jul 30  2015 untrimmed_fastq
+    -rw-rw-r-- 1 dcuser dcuser 64281061 Jul 31  2015 variant_calling.tar.gz
 
 `ls -l` gives a lot more information too.
 
@@ -137,6 +139,10 @@ $ pwd
 ```
 
 This stands for 'print working directory'. The directory you're currently working in.
+
+You will see:
+
+     /home/dcuser/dc_sample_data/untrimmed_fastq
 
 What if we want to move back up and out of the 'untrimmed_fastq' directory? Can we just
 type `cd dc_sample_data`? Try it and see what happens.
