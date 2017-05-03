@@ -311,6 +311,8 @@ The other important data are the normalized expression levels, which are useful 
 norm <- counts(dds, normalized=TRUE)
 ```
 
+The normalized expression dataset unfortunately isn't tidy, so let's make it tidy before moving forward.
+
 ```{r, eval=TRUE,  purl=FALSE}
 tidy_norm <- norm %>% 
   as.data.frame() %>%
@@ -318,16 +320,42 @@ tidy_norm <- norm %>%
   gather(sample, expression, -transcripts)
 ```
 
-```{r, eval=TRUE,  purl=FALSE}
-tidy_norm %>% 
-  filter(expression < 100) %>%
-  ggplot() +
-    geom_boxplot(aes(x=sample, y=expression))
+> ### Challenge
+>
+> Create a boxplot of the normalized expression per sample. What can you conclude by comparing the pre-normalization
+> and post-normalization datasets?
+
+```{r, echo=FALSE, purl=TRUE}
+
+## Challenge
+## Create a boxplot of the normalized expression per sample. What can you conclude by comparing the pre-normalization
+## and post-normalization datasets? You may have to restrict the expression values to really see the core of the
+## distribution.
+
 ```
+
+<!---
+```{r, echo=FALSE, purl=FALSE}
+## Answers
+##
+## * tidy_norm <- norm %>% filter(expression < 100) %>% ggplot() + geom_boxplot(aes(x=sample, y=expression))
+## * Normalization made the expression distributions much more similar and comparable.
+```
+--->
+
+Okay, finally to the best part, producing high-quality figures that you can use to show off your work. One
+common analysis you see in gene expression studies is a PCA, which allows you to visually cluster samples
+based on expression profile. We can perform an analogous analysis using a similar metric right in `DESeq2`.
+The function we will use is `vst` and you can view the help page to get more information.
 
 ```{r, eval=TRUE,  purl=FALSE}
 vsdata <- vst(dds)
 ```
+
+Once we have performed this analysis, `DESeq2` also has a nice function (`plotPCA`) to plot the result. This 
+function is what we call a *wrapper*, because it uses `ggplot2` for plotting the results. Let's produce this 
+plot and save it to a variable `pca`. Since `pca` is now a `ggplo2` object, we can customize it. In this case
+we will add a theme.
 
 ```{r, eval=TRUE,  purl=FALSE}
 pca <- plotPCA(vsdata, intgroup="organ")
