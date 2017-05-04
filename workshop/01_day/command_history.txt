@@ -517,3 +517,71 @@
   663  clear
   664  pwd
   665  ls
+  665  ls
+  665  ls
+  665  ls
+  666  cat new.txt 
+  667  pwd
+  668  ls
+  669  cd 
+  670  ls
+  671  clear
+  672  ls
+  673  head data.zip 
+  674  ls
+  675  clear
+  676  ls
+  677  mv data .data
+  678  ls
+  679  clear
+  680  ls
+  681  unzip data.zip 
+  682  ls
+  683  ls -F
+  684  ls
+  685  cd data/
+  686  ls
+  687  ls -F
+  688  cd untrimmed_fastq/
+  689  ls
+  690  gunzip SRR2040575_brain_1.fastq.gz 
+  691  ls
+  691  ls
+  692  gzip SRR2040575_brain_1.fastq SRR2040575_brain_1.fastq.gz
+  693  ls
+  693  ls
+  694  ls ..
+  695  gunzip SRR2040575_brain_1.fastq.gz 
+  696  ls
+  697  head SRR2040575_brain_2.fastq.gz 
+  698  ls
+  699  head -4 SRR2040575_brain_1.fastq 
+  700  ls
+  701  cd ../
+  702  ls
+  703  cd reference/
+  704  ls
+  705  cd ..
+  706  ls
+  707  cd
+  708  ls
+  709  cd dc_sample_data/
+  710  ls
+  711  clear
+  712  cd sra_metadata/
+  713  ls
+  714  clean
+  715  clea
+  716  clear
+  717  ls
+  718  pwd
+  719  head -1 SraRunTable.txt 
+  720  head -5 SraRunTable.txt 
+  721  head -1 SraRunTable.txt 
+  722  clear
+  723  ls
+  724  cut -f5 SraRunTable.txt | head -5
+  725  cut -f5 SraRunTable.txt | sort | uniq
+  726  cut -f5 SraRunTable.txt | sort | uniq -c
+  727  wc SraRunTable.txt 
+  728  tail -36 SraRunTable.txt | cut -f5 | sort | uniq -c
