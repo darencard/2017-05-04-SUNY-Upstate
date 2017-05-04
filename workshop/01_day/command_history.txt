@@ -335,3 +335,105 @@
   454  exit
   455  ls
   455  ls
+  454  exit
+  455  ls
+  456  cd 2017-05-04-SUNY-Upstate/
+  457  ls
+  458  cd workshop/
+  459  ls
+  460  cd 01_day/
+  461  ls
+  500  tail -F command_history.txt 
+  501  clear
+  502  pwd
+  503  cd dc_sample_data/
+  504  ls
+  505  pwd
+  506  echo "hello"
+  507  pwd
+  508  ls -l
+  509  clear
+  500  tail -F command_history.txt 
+  501  pwd
+  502  ls
+  503  cd 2017-05-04-SUNY-Upstate/
+  504  ls
+  510  nano list.sh
+  511  cat list.sh 
+  512  bash list.sh 
+  513  cd untrimmed_fastq/
+  514  ls
+  515  clear
+  516  ls
+  517  head SRR097977.fastq 
+  518  head -4 SRR097977.fastq 
+  519  clear
+  520  head -4 SRR097977.fastq 
+  521  grep GNATNACCACTTCC *fastq
+  522  grep -B1 GNATNACCACTTCC *fastq
+  523  nano search_str1.sh
+  524  clear
+  525  ls
+  526  cat search_str1.sh 
+  527  bash search_str1.sh 
+  528  clear
+  529  echo "string"
+  530  var1="string"
+  531  echo $var1
+  532  echo var1
+  533  ls
+  534  var2="SRR098026.fastq"
+  535  ls $var2
+  536  ls -l $var2
+  537  clear
+  538  nano search_str1.sh 
+  539  cat search_str1.sh 
+  540  bash search_str1.sh 
+  541  clear
+  542  echo $var1
+  543  bash search_str1.sh 
+  544  echo $var1
+  545  var2=" 55"
+  546  echo $var2
+  547  echo $var1$var2
+  548  echo ${var1}${var2}
+  549  echo ${var1}_${var2}
+  550  var12="world"
+  551  echo $var12
+  552  echo ${var1}2
+  553  clear
+  554  ls
+  555  ls *fastq
+  556  var3=`ls *fastq`
+  557  echo ${var3}
+  558  ls
+  559  clear
+  560  ls
+  561  filename=`ls *fastq`
+  562  echo ${filename}
+  563  wc ${filename}
+  564  clear ${var1}
+  565  clear
+  566  echo ${var1}
+  567  del ${var1}
+  568  unset var1
+  569  echo ${var1}
+  570  echo $var4
+  571  clear
+  572  ls
+  573  for filename in *.fastq; do     wc -l ${filename};     head -1 ${filename}; done
+  574  ls *.fastq
+  575  ls
+  576  ls ~
+  577  wc ~/*
+  578  ls
+  579  clear
+  580  for file in ~; do    wc file; done
+  581  for file in ~; do    wc $file; done
+  582  for file in ~/*; do    wc $file; done
+  583  wc ~/*
+  584  ls
+  585  clear
+  586  ls
+  587  pwd
+  588  ls
