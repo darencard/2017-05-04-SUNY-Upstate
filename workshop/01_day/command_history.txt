@@ -437,3 +437,83 @@
   586  ls
   587  pwd
   588  ls
+  589  for filename in *fastq; do    grep NNNNNN ${filename}; done
+  590  clear
+  591  for filename in *fastq; do     grep NNNNNN $filename > ${filename}_bad_read.txt;     echo ${filename}; done
+  592  ls
+  593  wc *bad_read.txt
+  594  wc SRR098026.fastq
+  595  clear
+  596  for filename in *fastq; do     grep NNNNNN ${filename} | wc -l; done
+  597  for filename in *fastq; do     grep NNNNNN ${filename} | wc -l > ${filename}_bad_count.log; done
+  598  ls
+  599  cat SRR097977.fastq_bad_count.log 
+  600  cat SRR098026.fastq_bad_count.log 
+  601  clear
+  602  ls
+  603  rm *log
+  604  ls
+  605  rm *txt
+  606  ls
+  607  nano search_bad_read.sh
+  608  ls
+  609  nano search_bad_read.sh
+  610  clear
+  611  bash search_bad_read.sh 
+  612  cat search_bad_read.sh 
+  613  nano search_bad_read.sh 
+  614  bash search_bad_read.sh 
+  615  ls
+  616  rm _bad_count.log 
+  617  ls
+  617  ls
+  618  clear
+  619  ls
+  620  cat *log
+  621  nano search_bad_read.sh 
+  622  cat search_bad_read.sh 
+  623  bash search_bad_read.sh 
+  624  ls
+  625  cat *log
+  626  nano search_bad_read.sh 
+  627  bash search_bad_read.sh 
+  628  cat search_bad_read.sh 
+  629  cat SRR097977.fastq_bad_count.log 
+  630  nano search_bad_read.sh 
+  630  nano search_bad_read.sh 
+  631  cat search_bad_read.sh 
+  632  bash search_bad_read.sh 
+  633  ls
+  634  cat SRR097977.fastq_bad.summary 
+  635  cat SRR098026.fastq_bad.summary 
+  636  clear
+  637  nano search_bad_read.sh 
+  638  cat search_bad_read.sh 
+  639  bash search_bad_read.sh 
+  640  ls 
+  641  cat *summary
+  642  ls
+  643  clear
+  644  mkdir bad_read
+  645  ls
+  646  ls -F
+  647  mv *bad* bad_read/
+  648  ls
+  649  ls bad_read/
+  650  ls
+  651  cd
+  652  ls
+  653  ls data/
+  654  ls
+  655  clear
+  656  cd 
+  657  ls
+  658  pwd
+  462  tail -F command_history.txt 
+  659  wget https://www.dropbox.com/s/lb3davhmme6rbcc/data.zip
+  660  ls
+  661  cd dc_sample_data/
+  662  ls
+  663  clear
+  664  pwd
+  665  ls
