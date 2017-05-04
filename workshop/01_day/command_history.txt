@@ -1,0 +1,81 @@
+  135  exit
+  135  exit
+  136  clear
+  195  clear
+  137  ls
+  138  clear
+  139  cd dc_sample_data
+  140  ls
+  141  ls -F
+  142  ls -l
+  143  cd untrimmed_fastq
+  144  pwd
+  145  cd ..
+  146  pwd
+  147  clear
+  148  ls
+  149  ls -a
+  150  ls -lat
+  151  man ls
+  152  cd .hidden
+  153  ls
+  154  clear
+  155  pwd
+  156  ls /home/dcuser
+  157  ls ../../
+  158  ls ~
+  159  pwd
+  160  ls ~/dc_sample_data
+  161  cd ~/dc_sample_data
+  162  pwd
+  163  clear
+  164  ls ~/dc_sample_data/
+  165  ls ~/d*
+  166  ls ~/d?ata
+  167  ls ~/d?ta
+  168  ls ~/d*ata
+  169  clear
+  170  ls
+  171  touch *.txt
+  172  ls
+  173  touch hello.txt
+  174  ls
+  175  rm *.txt
+  176  ls
+  177  touch hello.txt
+  178  touch *.txt
+  179  ls
+  180  touch *.txt
+  181  ls
+  182  rm *.txt
+  183  clear
+  184  touch *.txt
+  185  ls
+  186  touch hello.txt
+  187  ls
+  188  ls \*.txt
+  189  rm \*.txt
+  190  ls
+  191  cd
+  192  pwd
+  193  ls
+  193  ls
+  194  cd -
+  195  ls
+  196  rm hello.txt 
+  197  ls
+  198  cd
+  199  ls /bin
+  200  ls /bin/..
+  201  ls /home/
+  202  ls /dev
+  203  ls /bin/..
+  204  ls
+  205  ls *N-Y*
+  206  clear
+  207  ls
+  208  pwd
+  209  ls dc_sample_data/sra_metadata/
+  210  ls /bin
+  211  ls -F
+  212  ls -F /bin
