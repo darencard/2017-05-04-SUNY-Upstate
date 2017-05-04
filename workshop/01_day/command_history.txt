@@ -79,3 +79,259 @@
   210  ls /bin
   211  ls -F
   212  ls -F /bin
+  213  clear
+  214  ls ~/../../bin
+  215  clear
+  216  ls /bin/c*
+  217  ls /bin/*a*
+  218  clear
+  219  ls /bin/*o
+  220  ls /bin/*a
+  221  ls /bin/*c
+  222  ls /bin/*[ac]
+  223  clear
+  224  pwd
+  225  cd dc_sample_data/
+  226  ls
+  227  pwd
+  228  cd -
+  229  pwd
+  230  cd -
+  231  clear
+  232  history
+  233  pwd
+  234  ls
+  235  clear
+  236  touch newfile
+  237  ls
+  238  ls -lat 
+  239  touch newfile.sh
+  240  clear
+  241  ls
+  242  cat newfile
+  243  cd untrimmed_fastq/
+  244  ls
+  245  pwd
+  246  clear
+  247  pwd
+  248  ls
+  249  cat SRR097977.fastq 
+  250  pwd
+  251  less SRR097977.fastq 
+  252  more SRR097977.fastq 
+  252  more SRR097977.fastq 
+  253  ls
+  254  head SRR097977.fastq 
+  255  clear
+  256  head SRR097977.fastq 
+  257  tail SRR097977.fastq 
+  258  head -5 SRR097977.fastq 
+  259  clear
+  260  ls
+  261  cp SRR098026.fastq copy.fastq
+  262  ls
+  263  diff copy.fastq SRR098026.fastq 
+  264  diff copy.fastq SRR097977.fastq 
+  265  clear
+  266  ls
+  267  ls -F 
+  268  mkdir backup
+  269  ls -F
+  270  cd backup/
+  271  cd -
+  272  cd copy.fastq
+  273  ls
+  274  clear
+  275  ls
+  276  cp SRR097977.fastq backup/
+  277  ls
+  278  ls backup/
+  279  diff backup/SRR097977.fastq SRR097977.fastq 
+  280  mv copy.fastq backup/
+  281  ls backup/
+  282  clear
+  283  cd backup/
+  284  ls
+  285  ls .. 
+  286  touch SRR090826.fastq
+  287  ls
+  288  cat SRR090826.fastq 
+  289  cd ..
+  290  ls
+  291  head SRR098026.fastq 
+  292  mv SRR098026.fastq backup/
+  293  head backup/SRR098026.fastq 
+  294  ls
+  295  mv backup/SRR098026.fastq .
+  296  ls
+  297  cd backup/
+  298  ls
+  299  cd ..
+  300  ls
+  301  ls backup/
+  302  clear
+  303  ls
+  304  ls SRR098026.fastq 
+  305  ls backup/
+  306  mv backup/copy.fastq backup/new_copy.fastq
+  307  ls backup/
+  308  wc SRR09*fastq
+  309  clear
+  310  ls
+  311  ls backup/
+  312  ls -F backup/
+  313  rm backup/new_copy.fastq 
+  314  ls backup/
+  315  ls
+  316  rm backup
+  317  rm -r backup
+  318  ls
+  319  clear
+  320  ls
+  321  mkdir backup
+  322  cp SRR098026.fastq backup/copy.fastq
+  323  pwd
+  324  ls
+  325  clear
+  326  ls
+  327  touch hello.txt
+  328  ls
+  329  nano hello.txt 
+  330  cat hello.txt 
+  331  clear
+  332  nano hello.txt 
+  333  ls
+  334  pwd
+  335  ls
+  336  mv hello.txt backup/
+  337  s
+  338  clear
+  339  pwd
+  340  ls
+  341  grep NNNNNNNN SRR097977.fastq 
+  342  grep NNNNNNNN SRR098026.fastq 
+  343  grep NNNNNNNN SRR098026.fastq | head -5
+  344  grep NNNNNNNN SRR098026.fastq | tail -5
+  345  head -5 | grep NNNNNNNN SRR098026.fastq
+  346  head -5 SRR098026.fastq | grep NNNNNNNN
+  347  head -5 SRR098026.fastq 
+  348  grep -B1 SRR098026.fastq 
+  349  grep -B1 NNNNNNNNN SRR098026.fastq 
+  350  grep -A2 NNNNNNNNN SRR098026.fastq 
+  351  grep -B1 -A2 NNNNNNNNN SRR098026.fastq 
+  352  clear
+  353  grep -B1 -A2 NNNNNNNNN SRR098026.fastq | less
+  354  ls
+  355  grep -c NNNNNNNNNN SRR098026.fastq 
+  356  grep -c NNNNNNNNNN SRR097977.fastq 
+  357  ls
+  358  wc *fastq
+  359  wc -l *fastq
+  360  clear
+  361  head -5 SRR098026.fastq | grep NNNNNNNN
+  362  head -5 SRR098026.fastq | grep -c NNNNNNNN
+  363  grep -c NNNNNNNNNN *.fastq 
+  364  grep NNNNNNNNNN *.fastq |wc
+  365  grep NNNNNNNNNN SRR098026.fastq |wc
+  366  clear
+  367  head -5 SRR098026.fastq | grep -n NNNNNNNN
+  368  grep -v NNNNNNNNNNN SRR098026.fastq 
+  369  ls
+  370  clear
+  371  ls
+  372  cd ../sra_metadata/
+  373  pwd
+  374  ls
+  375  head SraRunTable.txt 
+  376  head -1 SraRunTable.txt 
+  377  clear
+  377  clear
+  378  head -1 SraRunTable.txt 
+  379  head -1 SraRunTable.txt | wc
+  380  cut -f1-2 SraRunTable.txt | head -1
+  381  cut -f5 SraRunTable.txt | head -1
+  382  cut -f5 SraRunTable.txt | head -5
+  383  cut -f2 SraRunTable.txt | head -5
+  384  cut -f3 SraRunTable.txt | head -5
+  385  cut -f11 SraRunTable.txt | head -5
+  386  cut -f11 SraRunTable.txt | head -5 | sort
+  387  ls
+  388  nano number.txt
+  389  cat number.txt 
+  390  clear
+  391  cat number.txt 
+  392  cat number.txt | sort
+  393  vim number.txt 
+  394  clear
+  395  cat number.txt 
+  396  cat number.txt | sort
+  397  cat number.txt | sort | uniq
+  398  cat number.txt | uniq
+  399  cat number.txt | sort | uniq -c 
+  400  clear
+  401  ls
+  402  head -1 SraRunTable.txt 
+  403  cut -f3 SraRunTable.txt | head -5
+  404  cut -f3 SraRunTable.txt | sort | uniq
+  405  wc SraRunTable.txt 
+  406  cut -f3 SraRunTable.txt | sort | uniq -c
+  407  cut -f5 SraRunTable.txt | sort | uniq -c
+  408  sort SraRunTable.txt | uniq -c
+  408  sort SraRunTable.txt | uniq -c
+  408  sort SraRunTable.txt | uniq -c
+  409  sort SraRunTable.txt | uniq -c | wc
+  410  cut -f1-3 SraRunTable.txt | head 
+  411  cut -f1-3 SraRunTable.txt | head | sort
+  412  cut -f1-3 SraRunTable.txt | head | sort -k3
+  412  cut -f1-3 SraRunTable.txt | head | sort -k3
+  413  cut -f1-3 SraRunTable.txt | head | sort -k3 > temp.log
+  414  ls
+  415  cat temp.log 
+  416  clear
+  417  ps
+  418  ps -fu
+  419  who
+  420  ls
+  421  clear
+  422  whoami
+  423  ls
+  424  cat SraRunTable.txt > temp &
+  424  cat SraRunTable.txt > temp &
+  425  ps -fu
+  426  kill 9017
+  196  tail -F command_history.txt 
+  427  ps -fu
+  196  tail -F command_history.txt 
+  197  bg
+  198  fg
+  428  ls
+  429  cler
+  430  clear
+  431  date
+  432  df 
+  433  df -h
+  434  ls
+  435  du -sh .
+  436  du -sh ~
+  437  ls
+  438  clear
+  135  exit
+  136  ls
+  137  pwd
+  138  tail -D temp
+  439  screen -S seq
+  440  ps -fu 
+  139  tail -F temp
+  140  ls
+  441  screen -r
+  442  ps -fu
+  443  clear
+  141  exit
+  444  screen -S window1
+  141  exit
+  445  screen -S window2
+  446  ls
+  447  screen -r
+  454  exit
+  455  ls
+  455  ls
