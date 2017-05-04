@@ -12,8 +12,10 @@ password: `data4Carp`
 | Barger | `ec2-34-203-245-113.compute-1.amazonaws.com` |
 | Behera | `ec2-34-201-103-124.compute-1.amazonaws.com` |
 | Cosgrove | `ec2-54-210-86-202.compute-1.amazonaws.com` |
+| Faughnan | `ec2-54-235-3-82.compute-1.amazonaws.com` |
 | Hanes | `ec2-54-175-27-204.compute-1.amazonaws.com` |
 | Knox | `ec2-54-205-5-52.compute-1.amazonaws.com` |
+| Le | `ec2-107-23-19-14.compute-1.amazonaws.com` |
 | Levack | `ec2-52-55-183-80.compute-1.amazonaws.com` |
 | Longo | `ec2-54-197-33-32.compute-1.amazonaws.com` |
 | Lu | `ec2-54-208-1-191.compute-1.amazonaws.com` |
