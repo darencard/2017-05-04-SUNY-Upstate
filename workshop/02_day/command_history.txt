@@ -1,0 +1,275 @@
+  500  exit
+  501  which r
+  502  which R
+  500  exit
+  501  clear
+  500  exit
+  501  clear
+  502  ls
+  503  pwd
+  502  tail -f /home/dcuser/2017-05-04-SUNY-Upstate/workshop/01_day/command_history.txt
+  503  pwd
+  504  ls
+  505  mkdir dc_workshop
+  506  ls
+  507  ls -F
+  508  mv data dc_workshop/
+  509  clear
+  510  ls
+  511  cd dc_workshop
+  512  ls
+  513  ls -F
+  514  mkdir docs results
+  515  ls
+  516  cd data
+  517  ls
+  518  cd reference
+  519  clear
+  520  ls
+  521  zcat GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz | head
+  522  ls
+  523  cd ../untrimmed_fastq/
+  524  clear
+  525  ls
+  526  gzip SRR2040575_brain_1.fastq 
+  527  zcat SRR2040575_brain_1.fastq.gz | head -8
+  528  clear
+  529  ls
+  530  ls ~
+  531  ls ~/FastQC
+  532  ~/FastQC/fastqc
+  533  ~/FastQC/fastqc -h
+  503  ls
+  504  cd dc_workshop/
+  505  ls
+  506  ls ~/Fastqc
+  507  ls ~/FastQC
+  508  ~/FastQC/fastqc 
+  508  ~/FastQC/fastqc 
+  509  ls
+  534  clear
+  535  ls
+  536  ~/FastQC/fastqc SRR2040575_brain_1.fastq.gz 
+  537  ls
+  538  clear
+  539  ls
+  540  ls ~/
+  541  ls ~/Trimmomatic-0.32/
+  542  java -jar ~/Trimmomatic-0.32/trimmomatic-0.32.jar
+  543  clear
+  544  java -jar ~/Trimmomatic-0.32/trimmomatic-0.32.jar PE -trimlog test.log -basein SRR2040575_brain_1.fastq.gz -baseout SRR2040575_brain_1.fastq.gz SLIDINGWINDOW:4:20 MINLEN:20
+  545  nano qtrim.sh
+  545  nano qtrim.sh
+  546  clear
+  547  cat qtrim.sh 
+  548  bash qtrim.sh 
+  549  ls
+  550  less SRR2040578_heart_1.fastq.gz.trim.log 
+  551  clear
+  552  mkdir ../trimmed_fastq
+  553  ls
+  554  mv *[12][UP].fastq.fastq.gz ../untrimmed_fastq/
+  555  mv *[12][UP].fastq.gz ../untrimmed_fastq/
+  555  mv *[12][UP].fastq.gz ../untrimmed_fastq/
+  556  cd ..
+  557  ls
+  558  cd untrimmed_fastq/
+  559  ls
+  560  rm *
+  561  ls
+  562  cd ..
+  563  ls
+  564  cd untrimmed_fastq/
+  565  ls
+  566  cd ../trimmed_fastq/
+  567  ls
+  568  cd ../untrimmed_fastq/
+  569  ls
+  570  cd ..
+  571  ls
+  572  cd ..
+  573  ls
+  574  cd ..
+  575  ls
+  576  unzip data.zip 
+  577  ls
+  578  cd dc_workshop/
+  579  ls
+  580  cd data/
+  581  ls
+  582  cp .backup/trimmed_fastq/* ./trimmed_fastq/
+  583  ls
+  583  ls
+  584  cd trimmed_fastq/
+  585  ls
+  586  cd ..
+  587  ls
+  588  cd untrimmed_fastq/
+  589  ls
+  590  cp ~/data/untrimmed_fastq/* ./
+  591  ls
+  592  cd ../untrimmed_fastq/
+  593  ls
+  594  cd ../trimmed_fastq/
+  595  ls
+  596  rm *.zip *.html
+  597  ls
+  598  mv * ../untrimmed_fastq/
+  599  ls
+  600  cd ../untrimmed_fastq/
+  601  ls
+  602  mv *_1_[12][UP].fastq.gz ../trimmed_fastq/
+  603  ls
+  604  ls ../trimmed_fastq/
+  605  mv ../trimmed_fastq/* ./
+  606  ls
+  607  rmdir ../trimmed_fastq/
+  608  ls -lh
+  609  ls
+  610  pwd
+  611  clear
+  612  pwd
+  613  cd ..
+  614  ls
+  615  cd untrimmed_fastq/
+  616  pwd
+  617  mkdir /home/dcuser/dc_workshop/data/trimmed_fastq
+  618  ls
+  619  mv *[12][UP].fastq.gz
+  620  mv *[12][UP].fastq.gz ../trimmed_fastq/
+  621  ls
+  622  ls ../trimmed_fastq/
+  623  pwd
+  624  cd ..
+  625  pwd
+  626  ls
+  627  clear
+  628  bwa
+  629  bwa index
+  630  ls
+  631  bwa index reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz 
+  632  clear
+  633  ls reference/
+  634  pw
+  635  pwd
+  636  bwa mem
+  637  bwa mem reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz trimmed_fastq/SRR2040575_brain_1_1P.fastq.gz trimmed_fastq/SRR2040575_brain_1_2P.fastq.gz > test.sam
+  638  ls
+  639  head test.sam 
+  640  tail test.sam 
+  641  samtools
+  642  samtools view
+  643  samtools view -b -S test.sam > test.bam
+  644  ls
+  645  head test.bam 
+  646  ls -lh
+  647  samtools
+  648  samtools index
+  649  samtools index test.bam 
+  650  samtools sort
+  651  samtools sort test.bam test.sort
+  652  ls
+  653  samtools index test.sort.bam 
+  654  ls
+  655  samtools
+  656  samtools flagstat
+  657  samtools sort test.sort.bam
+  658  samtools flagstat test.sort.bam
+  659  samtools
+  660  samtools idxstats
+  661  samtools idxstats test.sort.bam > test.counts.txt
+  662  head test.counts.txt 
+  663  cat test.counts.txt | cut -f 3 | sort -nr | head
+  664  cat test.counts.txt | sort -k3 -nr | head
+  665  bwa mem reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz trimmed_fastq/SRR2040575_brain_1_1P.fastq.gz trimmed_fastq/SRR2040575_brain_1_2P.fastq.gz | samtools view -b -S - | samtools sort - test2.sort
+  666  ls
+  666  ls
+  667  pwd
+  668  clear
+  669  touch map.sh
+  670  ls
+  671  nano map.sh
+  672  echo "samtools index test.sort.bam" >> map.sh 
+  673  cat map.sh 
+  674  echo "samtools flagstat test.sort.bam" >> map.sh 
+  675  echo "samtools idxstats test.sort.bam" >> map.sh 
+  676  cat map.sh 
+  677  nano map.sh 
+  677  nano map.sh 
+  677  nano map.sh 
+  677  nano map.sh 
+  677  nano map.sh 
+  678  bash map.sh reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz trimmed_fastq/SRR2040575_brain_1_1P.fastq.gz 
+  679  nano map.sh 
+  680  bash map.sh reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz trimmed_fastq/SRR2040575_brain_1_1P.fastq.gz 
+  681  nano map.sh 
+  682  bash map.sh reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz trimmed_fastq/SRR2040575_brain_1_1P.fastq.gz 
+  683  nano map.sh 
+  683  nano map.sh 
+  684  bash map.sh reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz trimmed_fastq/SRR2040575_brain_1_1P.fastq.gz 
+  685  nano map.sh 
+  686  bash map.sh reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz trimmed_fastq/SRR2040575_brain_1_1P.fastq.gz 
+  687  nano map.sh 
+  688  bash map.sh reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz trimmed_fastq/SRR2040575_brain_1_1P.fastq.gz 
+  689  nano map.sh 
+  690  pwd
+  691  nano map.sh 
+  692  bash map.sh reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz trimmed_fastq/SRR2040575_brain_1_1P.fastq.gz 
+  693  ls
+  694  mkdir results
+  695  bash map.sh reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz trimmed_fastq/SRR2040575_brain_1_1P.fastq.gz 
+  696  cat map.sh 
+  697  fg
+  698  ls
+  699  cd results/
+  700  ls
+  701  nano map.sh 
+  702  cd ..
+  703  nano map.sh 
+  704  cat map.sh 
+  705  ls
+  706  cd results/
+  707  ls
+  708  rm SRR2040575_brain.sort.bam.counts.txt SRR2040575_brain.sort.bam.stats.txt 
+  709  ls
+  710  ls -lh
+  711  mv SRR2040575_brain.sort.bam.bam SRR2040575_brain.sort.bam
+  712  ls
+  713  cd ..
+  714  ls
+  715  nano map.sh 
+  716  bash map.sh reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz trimmed_fastq/SRR2040575_brain_1_1P.fastq.gz 
+  717  clear
+  718  nano map_loop.sh
+  719  ls reference/
+  720  nano map_loop.sh
+  721  ls trimmed_fastq/*1P.fastq.gz
+  722  nano map_loop.sh
+  723  bash map_loop.sh 
+  724  nano map.sh
+  725  bash map_loop.sh 
+  726  ls
+  727  cd results/
+  728  ls
+  729  rm *
+  730  ls
+  731  cd ..
+  732  ls
+  733  bash map_loop.sh 
+  734  ls
+  735  ls reference/
+  736  nano map.sh
+  737  nano map_loop.sh
+  738  cd results/
+  739  ls
+  740  rm *
+  741  ls
+  742  cd ..
+  743  ls
+  744  bash map_loop.sh 
+  745  cat map_loop.sh 
+  746  fg
+  500  fg
+  501  ls
+  502  cd 2017-05-04-SUNY-Upstate/
+  503  ls
