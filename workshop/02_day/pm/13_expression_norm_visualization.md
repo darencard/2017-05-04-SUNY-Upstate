@@ -362,12 +362,21 @@ pca <- plotPCA(vsdata, intgroup="organ")
 pca + theme_bw()
 ```
 
+It is also pretty easy to make a heatmap, another common plot that is seen in many differential expression papers.
+Let's first select the top 50 transcripts based on adjusted p-value using the `arrange` function and appropriate
+subsetting.
+
 ```{r, eval=TRUE,  purl=FALSE}
 scripts <- arrange(res, padj)$row[1:50]
 ```
 
+Let's derive the data we need again from the raw normalized data matrix. In this case we will filter the final dataset
+to include only those top 50 transcripts. Moreover, we will scale each row such that the visualization looks the best
+across the transcripts. We must transpose the matrix to scale and then re-transpose afterwards. You can try to produce
+the same plot using no scaling to see the effect this has.
+
 ```{r, eval=TRUE,  purl=FALSE}
-tidy_norm <- norm %>% 
+tidy_norm_heatmap <- norm %>% 
   t() %>%
   scale() %>%
   t() %>% 
@@ -377,12 +386,17 @@ tidy_norm <- norm %>%
   gather(sample, expression, -transcripts)
 ```
 
+Finally, let's produce the heatmap using the `geom_tile` geom in `ggplot2`.
+
 ```{r, eval=TRUE,  purl=FALSE}
 heatmap <- ggplot(tidy_norm) +
   geom_tile(aes(x=sample, y=transcripts, fill=expression))
 
 heatmap
 ```
+
+We can also easily apply custom colors. In this case we will use the `viridis` color palette,
+which was recently created as a black-and-white compatible and color-blind safe color scale.
 
 ```{r, eval=TRUE,  purl=FALSE}
 # install.packages("viridis")
@@ -392,6 +406,10 @@ heatmap +
   scale_fill_viridis()
 ```
 
+Volcano plots, which compare the log10 adjusted p-value to the fold change to resolve a volcano
+like pattern are also popular. We can also easily recolor certain points if they have an adjusted
+p-value of 0.01 or lower and a log2 fold change of 5 or greater.
+
 ```{r, eval=TRUE,  purl=FALSE}
 volcano <- ggplot(res, aes(x=log2FoldChange, y=-log10(padj),
                            text=row)) +
@@ -400,6 +418,10 @@ volcano <- ggplot(res, aes(x=log2FoldChange, y=-log10(padj),
 
 volcano
 ```
+
+Finally, `R` has some nice packages for creating interactive plots. One is `plotly`, which can work
+with `ggplot2` objects. Check out the volcano plot in an interactive form to get a taste for how neat
+and powerful this can be for exploring data.
 
 ```{r, eval=TRUE,  purl=FALSE}
 # install.packages("plotly")
