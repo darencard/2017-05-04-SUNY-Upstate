@@ -1,0 +1,234 @@
+Welcome to Data Carpentry Etherpad!
+
+This pad is synchronized as you type, so that everyone viewing this page sees the same text. This allows you to collaborate seamlessly on documents.
+
+Use of this service is restricted to members of the Software Carpentry and Data Carpentry community; this is not for general purpose use (for that, try etherpad.wikimedia.org).
+
+Users are expected to follow our code of conduct: http://www.datacarpentry.org/code-of-conduct/
+
+All content is publicly available under the Creative Commons Attribution License: https://creativecommons.org/licenses/by/4.0/
+
+################################################################################################################
+
+Welcome to this Data Carpentry Genomics Workshop!
+
+################################################################################################################
+
+Important General Information:
+    
+Workshop website: https://darencard.github.io/2017-05-04-SUNY-Upstate/
+        
+Please fill out pre-workshop survey: https://www.surveymonkey.com/r/dc_pre_workshop_v1
+    
+################################################################################################################
+
+Important Cloud Computer Login Information:
+
+You will be connecting to a remote "cloud" computer during this workshop. The username and password are the same for everyone:
+    
+Username: dcuser
+Password: data4Carp
+
+The hostname of the computer you are connecting to differs by person. Visit the following page and find your name to retrieve your hostname.
+
+## instances will no longer be available ##
+
+################################################################################################################
+
+How to use this Etherpad:
+    
+Please begin by selecting a handle and entering it next to a color on the top right. You can use your name or an alias, but have something so we can refer to you directly when responding to questions.
+
+Use the following space to take notes as a community. You can record any information you find useful here. It is best to strive to keep the content organized. For example, at the very least you should break up the notes into the four sessions of the workshop. 
+
+To the right is a chat. We recommend you use this space to ask questions that may be beyond the scope of this class. In some cases we may refer you to the chat to ask a question, as in the limited time we have we need to stay on task to accomplish learning objectives.
+
+This Etherpad will be archived and made available to you for later reference.
+
+################################################################################################################
+
+KEEP YOUR NOTES HERE FOR COMMUNITY REFERENCE
+
+Day 1: AM: Cloud Computing and Intro Bash
+Commands we've learned (help fill in as we go...)
+cd = change directory
+ls = list directories
+
+ls -F gives file properties, files with slashes are directories
+ls -l long format
+pwd = print working directory, output is the full path to your location
+cd .. = goes back one directory
+ls -a = list all (including hidden items)
+ls -lat = long format of ls -a, t sorts by modification time, newest first
+man command = gives manual for specified command, q to quit
+~ stands for home diectory, eg ls ~/dc_sample_data
+tab key after first few letters allows auto completion of files in directory (completes as soon as it can match something unique)
+* is a wild card
+touch filename.txt = creates a file with given filename
+cd   = there is no argument there. return = goes to home diectory
+
+
+Helpful links for Unix
+https://files.fosswire.com/2007/08/fwunixref.pdf
+http://v4.software-carpentry.org/shell/index.html
+
+https://explainshell.com
+http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html
+
+
+history = history of commands in window
+Up arrow key recalls previous commands (and down, used in combination, allows you to move through previous commands)
+touch <filename> = creates an empty file where <filename> is the name you want to use
+extensions (e.g., .txt, .sh, etc.) are good practice. Most files you use in the terminal are just text (.txt) files.
+
+cat filename = shows the content of a file - better for viewing small files
+less filename = shows content of file, but allows you to scroll in file (it does a 'controlled' open and opens the file in chunks as you scroll), hit q to quit   (same thing with "more" command) - very helpful with viewing huge files
+head filename = print the first 10 lines of file
+tail filename = last lines of file
+diff filename1 filename2 = lists differences between files
+mkdir name = makes new directory with the given name
+mv filename newpath = moves file to new path
+rm filename = removes file without warning, will nit remove directory
+rm -r = removed directory filename
+nano = opens a command-line based text editor
+ctrl - x = close file (will prompt to save)
+ctrl - o = save file
+
+grep searchstring filename = searches file for matching string
+grep -B1 search pattern filename = searches for serach pattern and the previous line, B2, two lines before search string
+grep A2 = gives search string and two lines following
+use | less to be able to scroll through output
+grep -c serachstring=  gives number of matches to search string
+wc -l  filnename = wc = word count - gives number of lines in file 
+grep -v = reverse search- gives all line that doesn't have search term
+cut -f1-2 finename | head -1 = prints out first two columns of the first line of data
+sort: sorts the contents of a file in user-specified ways
+
+> logfilename = redirects output into new file 
+ps = lists runnning processes
+ps -fu = lists processes user is currently running
+& puts job in backgound shows job number . bg does the same thing, fg brings job to the foreground
+screen -S name= creates new screen in server that will run in backkground
+filename.sh = bash script
+bash filename.sh = to run script
+var1="string" = assigned the value "string" to var1
+echo $var1= runs the var1
+or ${var1} = $var1 but is more explicit ($var1 works most times but there are some instances where it doesn't)
+
+Download file from
+https://www.dropbox.com/s/lb3davhmme6rbcc/data.zip
+http://www.ncbi.nlm.nih.gov/sra?term=SRP058740
+
+
+Day 2: AM: Genomics Data Processing
+
+Original dataset: http://www.ncbi.nlm.nih.gov/sra?term=SRP058740
+From paper: http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1005721
+Human genome resource (NCBI): https://www.ncbi.nlm.nih.gov/genome/?term=human
+The modified version I created: https://figshare.com/articles/Multi-organ_RNAseq_Data/4906865
+
+
+fastqc: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+
+~/FastQC/fastqc SRR2040575_brain_1.fastq.gz
+
+trimmomatic: http://www.usadellab.org/cms/?page=trimmomatic
+
+java -jar ~/Trimmomatic-0.32/trimmomatic-0.32.jar PE -trimlog test.log -basein SRR2040575_brain_1.fastq.gz -baseout SRR2040575_brain_1.fastq.gz SLIDINGWINDOW:4:20 MINLEN:20
+
+bwa: http://bio-bwa.sourceforge.net/
+
+
+samtools: http://www.htslib.org/
+
+
+Mapping bash script:
+    1. bwa mem reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz trimmed_fastq/SRR2040575_brain_1_1P.fastq.gz trimmed_fastq/SRR2040575_brain_1_2P.fastq.gz | samtools view -b -S - | samtools sort - test2.sort
+
+
+Bash script:
+    
+# map.sh
+#
+# This script maps paired fastq files to a reference and produces important mapping files.
+#
+# Usage: bash map.sh <reference> <read1>
+
+
+# define input/output variables
+
+ref=${1}
+read1=${2}
+base=`basename ${read1} _1_1P.fastq.gz`
+read2=${base}_1_2P.fastq.gz
+dir=`dirname ${read1}`
+fq1=${read1}
+fq2=${dir}/${read2}
+bam=results/${base}.sort
+
+
+# run variables
+
+bwa="bwa mem ${ref} \
+${fq1} ${fq2} | \
+samtools view -b -S - | \
+samtools sort - ${bam}"
+
+index="samtools index ${bam}.bam"
+stats="samtools flagstat ${bam}.bam > results/${base}.stats.txt"
+counts="samtools idxstats ${bam}.bam > results/${base}.counts.txt"
+
+# run the variable commands
+
+# confirm working directory
+cd /home/dcuser/dc_workshop/data
+
+# mapping the reads to the reference
+echo ${bwa}
+eval ${bwa}
+
+# indexing the mapping .bam
+echo ${index}
+eval ${index}
+
+# calculating mapping stats
+echo ${stats}
+eval ${stats}
+
+# estimating read counts
+echo ${counts}
+eval ${counts}
+
+Loop bash script:
+    
+# script to loop through fastqs and run mapping bash script
+
+for sample in trimmed_fastq/*1P.fastq.gz
+do
+bash map.sh reference/GCF_000001405.36_GRCh38.p10_rna.known_refseq_proteincoding.nodups.fasta.gz \
+${sample}
+done
+
+
+R Analysis
+
+DESeq2: https://bioconductor.org/packages/release/bioc/html/DESeq2.html
+
+
+
+
+Other options to explore
+-------------------------
+
+Because this workshop is only 2 days we obviously cannot even touch on everything. But one major topic that could not be covered here was Python. It is the other current, popular open source programming language in bioinformatics and beyond. Unlike the shell scripting and R language (or AWK and SED), it is a high-level laguage. So if you are finding you grasp the concepts in the workshop somewhat and like the idea of programming and the power it brings, but find the shell stuff and R commands rather cryptic, you may be interested in Python. Python is more like how you'd write instructions in natural written language. It has all the same things like `scripts or programs`,`variables`,`loops`, `arguments`, etc.. But it is also very general and can be used to do most anything.  It is also very cross platform.
+I have some resources for learning Python at http://jan2015feng-gr-m.readthedocs.io/en/latest/going%20forward/#learning-python .
+For those you who'd like to have a book to reference while you are working out code, I'd recommend the book Practical Computing for Biologists by Haddock and Dunn http://practicalcomputing.org/ . It is a little old now, but this book has the advantage it also covers regular expressions in depth. A concept we only mentioned in the workshop. Plus, it also is a resource for working in the shell. I have a copy that I'd be happy to let you look over first. Plus, I'd be happy to offer tips and any help with troubleshooting Python. I, Wayne, am up in Weiskotten Hall 4240 most week days.
+I should add even if you become experienced in Python, knowing some R is still good for biological scientists because the main statisical analysis software in bioinformatics is based on R. And you'll still be doing a lot on the shell, and so knowing what has been covered here will do you well.
+
+
+
+
+
+
+Post-Workshop Survery: 
+    https://www.surveymonkey.com/r/dc_post_workshop_v1

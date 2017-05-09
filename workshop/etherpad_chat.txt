@@ -1,0 +1,78 @@
+Daren Card - Instructor:08:25 Hello World!
+Daren Card - Instructor:08:26 Hello World!
+Lingling:09:12 Hello
+Jie:09:13 Hey
+SRB:09:13 Hola!
+SRB:09:13 o_O
+Bao:09:13 hello
+SDV:09:13 Hi
+Karin:09:13 hello
+MSV:09:16 Hi everyone
+:09:19 testing
+Daren Card - Instructor:09:21 ASK ANY QUESTIONS YOU MIGHT HAVE HERE
+Michael RW:09:29 is there a command to go up two levels towards root, instead of just one at a time?
+:09:29 cd ../..
+Michael RW:09:29 ty
+Daren Card - Instructor:09:33 More context: you can specify 'full' or 'relative' paths using one command, instead of doing it directory by directory
+SRB:09:35 .hidden?
+Bao:09:35 youfoundit.txt
+Michael RW:09:35 .hidden
+Pat Faughnan:09:35 . .. youfoundit.txt
+:09:35 youfoundit.txt
+barry:09:36 youfoundit.txt
+SRB:09:36 ahh youfoundit
+Michael RW:09:49 SraRunTable.txt
+barry:09:50 SraRunTable.txt
+barry:09:50 No Folders
+barry:09:51 /bin/cat* /bin/chacl* /bin/chgrp* /bin/chmod* /bin/chown* /bin/chvt* /bin/cp* /bin/cpio*
+barry:09:52 no /bin/a*
+barry:09:53 no /bin/*o.*
+MSV:10:03 for last item problem 3 I defined a set of charaters: ls /bin/*[a,c]
+Daren Card - Instructor:10:18 Viplano: yes, you can also do it that way. This is fancier stuff called regular expressions, which allow you to match text patterns. We could do a whole workshop on that, but won't really be talking much about it. Worth learning the basics of regular expressions, for sure!
+:10:28 what does touch mean?
+SRB:10:28 how do you put your command history in a new window?
+Daren Card - Instructor:10:28 It creates an empty file with the name you specify
+:10:28 but is the command called touch?
+Daren Card - Instructor:10:29 @SRB: we've used a little trick to do this. I can show you during a break if you ask me.
+Daren Card - Instructor:10:29 yes it is called touch
+:10:40 sorry, I meant to ask why touch is called touch?
+Daren Card - Instructor:10:42 touch is a commonly used verb that basically means to refresh a file. If the file doesn't exist it will create it. If it does, it will update the metadata to show it was last modified at the time you touched it.
+:10:43 thamks
+Dr. Palumbo:10:47 How do you copy something? How do you rename something?
+Daren Card - Instructor:10:48 @Palumbo: cp <source> <destination> copies
+Daren Card - Instructor:10:48 @Palumbo: mv <source> <destination> renames (it moves the old file to a new file)
+:11:14 what does piping mean?
+Daren Card - Instructor:11:18 to pipe means to take the output of the first command and automatically use it as the input for the second command, rather then writing it out to the screen
+Dr. Palumbo:11:32 What is cut? What is -F?
+Daren Card - Instructor:11:34 @Palumbo: cut excises a given field from a text file. Usually fields are separated by tab (default) or other characters
+Daren Card - Instructor:11:35 @Palumbo: -f (lowercase) is the argument flag where you can specify which field you want to cut (1 - # fields)
+MSV:11:35 If you write a txt file with a Windows editor (e.g. Notepad) are the tabs that you put in that file also seen as "tabs" by Nano or other editors?
+Daren Card - Instructor:11:35 @Vioplano: Yes, they should be.
+MSV:11:35 Thks
+SRB:13:29 does it matter if you put spaces before/after = sign?
+Daren Card - Instructor:13:33 I don't think so, but give it a try and see
+Dr. Palumbo:13:35 What do curly brackets do? What is _string2?
+SRB:13:35 nope, does not like it
+Daren Card - Instructor:13:41 @Palumbo: The curly brackets are just part of the syntax of specifying a variable. They aren't required in most cases, but sometimes are necessary, and they can help with readability
+SRB:13:47 is it remembering the filename variable from before?
+Daren Card - Instructor:13:51 @SRB: if you haven't unset it or replaced it, then yes
+SRB:14:02 why are {} necessary/unnecessary
+Daren Card - Instructor:14:15 @SRB: it is somewhat a personal preference and in some cases you must use the {} to get the effect you want.
+Daren Card - Instructor:14:15 @SRB: no {} is a small shortcut that usually works, but {} is the best way to specify variables
+SRB:14:28 so " space " is concatenate?
+:14:28 clear as mud
+MSV:09:00 Testing, testing... is this thing on? :-)
+Lingling:09:01 yes
+unnamed:09:12 is ssh specific to the amazon server or is that a general way to log in?
+Lingling:09:39 ssh is for login to a server in general
+Lingling:09:40 you can find detailed description here http://linuxcommand.org/man_pages/ssh1.html
+Wayne:09:55 You can find a diagram of paired and unpaired and stranded vs un stranded at http://salmon.readthedocs.io/en/latest/library_type.html . The current main Ilummina chemistry for paired corresponds to the "ISR" type.
+SRB:10:16 whats the fastqc.zip contain?
+SRB:10:16 just the same?
+Wayne:10:19 I think same plus logs and images in the report.
+SRB:10:25 k
+SRB:13:35 whats CMD mean?
+Lingling:13:49 command ? what's the context?
+SRB:14:26 CMD: bwa mem reference/GC
+Lingling:15:49 i think just means "bwa ..." is the command being run
+SRB:16:12 R R!
